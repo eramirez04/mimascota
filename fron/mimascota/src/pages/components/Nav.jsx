@@ -2,6 +2,8 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+import { Logout } from "../../routes/rutasProtegidas";
+
 const Nav = ({ contenido }) => {
   return (
     <>
@@ -15,7 +17,8 @@ const Nav = ({ contenido }) => {
           <div>{contenido}</div>
         </div>
         <div className="flex justify-center items-center w-2/3">
-          <img src="btn-close.svg" alt="" />
+          <button onClick={Logout}>  <img src="btn-close.svg" alt="" /></button>
+
         </div>
       </nav>
     </>

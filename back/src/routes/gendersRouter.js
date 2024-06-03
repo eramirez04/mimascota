@@ -1,10 +1,12 @@
 import { Router } from "express";
 
-import { RegistrarGenero } from "../controllers/gendersController.js";
+import { RegistrarGenero, getGenero } from "../controllers/gendersController.js";
 
+import { isLogin } from "../middleware/loginMiddleware.js";
 
 const GeneroRouter = Router()
 
-GeneroRouter.post('/genero', RegistrarGenero)
+GeneroRouter.post('', RegistrarGenero)
+GeneroRouter.get('', isLogin, getGenero)
 
 export default GeneroRouter

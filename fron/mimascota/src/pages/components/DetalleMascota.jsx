@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState, useEffect, } from "react";
 import Nav from "./Nav";
+import { useParams } from "react-router-dom";
+import axiosCliente from "../components/api/Axios"
 
 const DetalleMascota = () => {
+
+  const { id } = useParams()
+  const [mascota, setMascota] = useState({})
+
+  useEffect(() => {
+
+    const mascotaId = async () => {
+      try {
+        const response = await axiosCliente.get(`/mascotas/${id}`)
+        setMascota(response.data.mascota)
+        console.log(mascota)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    mascotaId()
+
+  }, [id])
+
   return (
     <>
       <div className="bg-blue-900 min-h-screen">
@@ -28,7 +49,7 @@ const DetalleMascota = () => {
                     <section className="flex flex-row bg-[url('info-name.svg')] bg-no-repeat h-12 w-96">
                       <div className="w-4/12"></div>
                       <span className="flex pl-9 items-center w-4/6">
-                        hola soy lolodrilo
+                        {mascota.nombre}
                       </span>
                     </section>
                   </li>
@@ -37,7 +58,7 @@ const DetalleMascota = () => {
                     <section className="flex flex-row bg-[url('info-race.svg')] bg-no-repeat h-12 w-96">
                       <div className="w-4/12"></div>
                       <span className="flex pl-9 items-center w-4/6">
-                        no se
+                        {mascota.raza}
                       </span>
                     </section>
                   </li>
@@ -45,7 +66,7 @@ const DetalleMascota = () => {
                     <section className="flex flex-row bg-[url('info-category.svg')] bg-no-repeat h-12 w-96">
                       <div className="w-4/12"></div>
                       <span className="flex pl-9 items-center w-4/6">
-                        no se
+                       {mascota.categoria}
                       </span>
                     </section>
                   </li>
@@ -53,7 +74,7 @@ const DetalleMascota = () => {
                     <section className="flex flex-row bg-[url('info-gender.svg')] bg-no-repeat h-12 w-96">
                       <div className="w-4/12"></div>
                       <span className="flex pl-9 items-center w-4/6">
-                        no se
+                        {mascota.genero}
                       </span>
                     </section>
                   </li>

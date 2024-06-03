@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;

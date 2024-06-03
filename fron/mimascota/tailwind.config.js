@@ -6,8 +6,11 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage :{
-        'hero-main' : "url('bg-login.svg')",
+      backgroundImage: {
+        'hero-main': "url('bg-login.svg')",
+      },
+      fontFamily: {
+        'montserrat-bold': ['Montserrat-Bold', 'sans-serif'],
       },
     },
   },

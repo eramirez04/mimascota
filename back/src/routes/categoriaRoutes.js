@@ -1,9 +1,11 @@
 import { Router } from "express";
 
-import { RegistrarCategoria } from "../controllers/categoriaController.js";
+import { RegistrarCategoria, getCategoria } from "../controllers/categoriaController.js";
 
+import { isLogin } from "../middleware/loginMiddleware.js";
 const categoriaRouter = Router()
 
-categoriaRouter.post('/categoria', RegistrarCategoria)
+categoriaRouter.post('', RegistrarCategoria)
+categoriaRouter.get('', isLogin, getCategoria)
 
 export default categoriaRouter

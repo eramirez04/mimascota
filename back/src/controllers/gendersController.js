@@ -17,3 +17,16 @@ export const RegistrarGenero = async (req, res) => {
         return res.status(500).json({ mensaje: "error en el servidor", error })
     }
 }
+
+export const getGenero = async (req, res) => {
+    try {
+        const genero = await gendersModel.find({})
+
+        if (genero.length === 0) return res.status(404).json({ mensaje: "no encontraron generos" })
+
+        return res.status(200).json(genero)
+
+    } catch (error) {
+        return res.status(500).json({ mensaje: "error en el servidor", error })
+    }
+}
