@@ -44,7 +44,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="bg-blue-900 min-h-full">
+      <div className="bg-blue-900 min-h-full h-screen">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-auto">
           <Nav contenido={"Administrar Mascotas"} />
 
@@ -112,7 +112,7 @@ const Home = () => {
                   ))
                 }
 
-                <li className="bg-gray-400 lg:w-full rounded-s-md">
+                <li className="flex content-center items-center bg-gray-400 lg:w-full rounded-s-md  h-20 max-md:w-5/6">
                   {errorMensaje && <p>{errorMensaje}</p>}
                 </li>
               </ul>

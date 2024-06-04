@@ -78,7 +78,11 @@ const ModificarMascota = () => {
     const actualizarMascota = async (id) => {
         try {
             console.log(mascota)
-            const response = await axiosCliente.put('/mascotas/' + id, user)
+            const response = await axiosCliente.put('/mascotas/' + id, mascota)
+            console.log(response)
+            if (response.status === 200) {
+                alert("mascota actulizada")
+            }
         } catch (error) {
             console.error(error.response.data);
         }

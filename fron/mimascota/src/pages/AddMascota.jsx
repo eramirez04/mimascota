@@ -93,20 +93,25 @@ const AddMascota = () => {
     data.append('categoria_id', idCategoria);
     data.append('genero_id', idGenero);
     data.append('img', foto);
+    if (foto) {
 
-    try {
-      const response = await axiosCliente.post('/mascotas', data);
+      try {
+        const response = await axiosCliente.post('/mascotas', data);
 
-      // si se registro con exito 
-      // retorne a la pagina principal
-      if (response) {
-        alert("Tu nuevo amigo");
-        navegacion('/home');
+        // si se registro con exito 
+        // retorne a la pagina principal
+        if (response) {
+          alert("Tu nuevo amigo");
+          navegacion('/home');
+        }
+      } catch (error) {
+        console.error(error.response.data);
       }
-    } catch (error) {
-      console.error(error.response.data);
+    } else {
+      alert("foto es requerida")
     }
   }
+
 
   const [imagenPredeterminada, setImagenPredeterminada] = useState(' icon-camera.svg')
   return (
@@ -134,24 +139,33 @@ const AddMascota = () => {
 
                 </figure>
               </div>
-              <div className="flex flex-col items-center h-3/5 pt-11">
+              <div className="flex flex-col items-center h-3/5 pt-1">
                 <div className="flex h-full flex-col justify-center items-center content-center lg:w-6/12 md:w-6/12 sm:w-6/12 max-sm:w-4/5 gap-y-4 text-center">
                   <form
                     onSubmit={handleSubmit(registrarMascota)}
                     className="flex flex-col max-sm:w-full h-full lg:w-9/12 md:w-9/12 gap-y-4">
                     <label>
                       <input
+                        {
+                        ...register('nombre', { required: true })
+                        }
                         value={nombre}
                         onChange={e => seTnombre(e.target.value)}
                         type="text"
                         className="block w-full p-3 text-gray-900  rounded-2xl  text-xs focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Nombre"
                       />
+                      {
+                        errors.nombre?.type === 'required' && (
+                          <div className="text-white text-2xl font-bold">Nombre de mascota es requerido</div>
+                        )}
                     </label>
 
                     <label htmlFor="">
                       <div className="relative">
                         <select name="" id=""
+                          {...register('raza', { required: true })}
+
                           value={idRaza}
                           onChange={e => setIdRaza(e.target.value)}
                           className="appearance-none w-full py-2 px-4 pr-8 rounded-lg bg-gray-200 focus:outline-none focus:bg-white focus:border-blue-500">
@@ -164,6 +178,11 @@ const AddMascota = () => {
                             ))
                           }
                         </select>
+                        {
+                          errors.raza?.type === 'required' && (
+                            <div className="text-white text-2xl font-bold">Seleccione la raza</div>
+                          )
+                        }
                       </div>
                     </label>
 
@@ -172,6 +191,8 @@ const AddMascota = () => {
                         <select
                           name=""
                           id="cateforia"
+                          {...register('categoria', { required: true })}
+
                           value={idCategoria}
                           onChange={e => setIdCategoria(e.target.value)}
                           className="appearance-none w-full py-2 px-4 pr-8 rounded-lg bg-gray-200 focus:outline-none focus:bg-white focus:border-blue-500"
@@ -183,6 +204,11 @@ const AddMascota = () => {
                             ))
                           }
                         </select>
+                        {
+                          errors.categoria?.type === 'required' && (
+                            <div className="text-white text-2xl font-bold">requerida</div>
+                          )
+                        }
                       </div>
                     </label>
 
@@ -196,9 +222,12 @@ const AddMascota = () => {
                     <div className="relative">
                       <select
                         name=""
+                        id="genero"
+                        {
+                        ...register('genero', { required: true })
+                        }
                         value={idGenero}
                         onChange={e => setIdGenero(e.target.value)}
-                        id="cateforia"
                         className="appearance-none w-full py-2 px-4 pr-8 rounded-lg bg-gray-200 focus:outline-none focus:bg-white focus:border-blue-500"
                       >
                         <option value="">Selecciona una Genero</option>
@@ -208,6 +237,11 @@ const AddMascota = () => {
                           ))
                         }
                       </select>
+                      {
+                        errors.genero?.type === 'required' && (
+                          <div className="text-white text-2xl font-bold">genero es requerido</div>
+                        )
+                      }
                     </div>
 
                     <div>

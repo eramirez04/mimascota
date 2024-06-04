@@ -24,7 +24,6 @@ const mascotasSchema = mongoose.Schema({
     },
     foto: {
         type: String,
-        required: true
     }
 })
 
