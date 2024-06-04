@@ -9,6 +9,9 @@ export default {
       backgroundImage: {
         'hero-main': "url('bg-login.svg')",
       },
+      backgroundImage: {
+        'name-main': "url('info-name.svg')"
+      },
       fontFamily: {
         'montserrat-bold': ['Montserrat-Bold', 'sans-serif'],
       },

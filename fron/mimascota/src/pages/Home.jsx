@@ -65,7 +65,7 @@ const Home = () => {
                       <div className="flex flex-row w-full items-center gap-x-3">
                         <div className="flex h-20 w-1/5 items-center justify-center content-center">
                           <img
-                            src={`http:localhost:3000/${mascota.foto}`}
+                            src={`http://localhost:3000/imagenes/${mascota.foto}`}
                             className="h-14 w-16 rounded-full"
                             alt=""
                           />

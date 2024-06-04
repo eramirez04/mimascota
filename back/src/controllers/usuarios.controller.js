@@ -22,34 +22,10 @@ export const RegistraUsuario = async (req, res) => {
 
         const save = await usuario.save()
 
-        return res.status(201).json({ usuario: save })
+        return res.status(201).json({mesanje : "usuario creado" })
 
 
     } catch (error) {
         return res.status(500).json({ mensaje: "error en el servidor", error })
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-/* 
-class UsuarioController {
-
-
-
-    async crearRegistroUsuario() {
-        try {
-
-        } catch (error) {
-            console.error(error)
-        }
-    }
-} */

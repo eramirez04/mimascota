@@ -2,7 +2,7 @@ import Express from "express"
 import bodyParser from "body-parser"
 import cors from 'cors'
 
-// conexion a la base de datos
+//importacion de la conexion a la base de datos
 import Database from "./src/database/conexion/database.js"
 
 //rutas 
@@ -21,14 +21,15 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-
+// establecemos una instacia de la clase database
+// que permitira la conexion a el servidor de la base de datos
 new Database()
 
 // archivos publicos
 app.set('view engine', 'ejs')
 app.set('views', './views')
 
-
+// rutas de el servidor
 app.get('/', (req, res) => res.send('Hello World!'))
 app.use(Express.static('./public'))
 app.use('/usuario', UsuarioRoute)

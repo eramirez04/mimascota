@@ -1,9 +1,5 @@
 import mongoose from "mongoose";
-/* const serveMongo = '127.0.0.1:27017'
-const database = 'mimascota' */
-/* const serveMongo = process.env.DB_HOST
-const database = process.env.DB_DATABASE
- */
+
 // manejar variables de entorno secretas
 import dotenv from "dotenv"
 dotenv.config({ path: 'env/.env' })

@@ -13,8 +13,7 @@ const DetalleMascota = () => {
     const mascotaId = async () => {
       try {
         const response = await axiosCliente.get(`/mascotas/${id}`)
-        setMascota(response.data.mascota)
-        console.log(mascota)
+        setMascota(response.data.mascota) 
       } catch (error) {
         console.error(error)
       }
@@ -34,11 +33,11 @@ const DetalleMascota = () => {
           <main>
             <div className="h-svh">
               <div className="flex justify-center h-2/5">
-                <figure className="flex items-center justify-center">
+                <figure className="flex  h-full w-96 rounded-full items-center justify-center">
                   <img
-                    src="photo-lg-1.svg"
+                    src={`http://localhost:3000/imagenes/${mascota.foto}`}
                     alt="icon-camera"
-                    className="rounded-full w-96 h-40"
+                    className="rounded-full h-full"
                   />
                 </figure>
               </div>
@@ -89,10 +88,3 @@ const DetalleMascota = () => {
 };
 
 export default DetalleMascota;
-
-/*    <section className="flex flex-row bg-[url('info-name.svg')] bg-no-repeat h-12 w-96">
-                  
-                  <div className="w-4/12"></div>
-                  <span className="flex pl-9 items-center w-4/6">hola</span>
-                </section>
-              </div> */

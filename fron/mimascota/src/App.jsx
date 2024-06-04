@@ -11,20 +11,21 @@ import DetalleMascota from "./pages/components/DetalleMascota";
 
 // proteger rutas
 import { ProtectedRoute } from "./routes/rutasProtegidas";
+import ModificarMascota from "./pages/components/ModificarMascota";
 
+import { ProtectedRouteWithErrorBoundary } from "./routes/rutasProtegidas";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRouteWithErrorBoundary />}>
           <Route path="/home" element={<Home />} />
           <Route path="/añadir" element={<AddMascota />} />
+          <Route path="/detalle/:id" element={<DetalleMascota />} />
+          <Route path="/editar/:id" element={<ModificarMascota />} />
         </Route>
-        <Route path="/detalle/:id" element={<DetalleMascota />} />
-        <Route path="/editar/:id" element={<DetalleMascota />} />
-
       </Routes>
     </>
   );
