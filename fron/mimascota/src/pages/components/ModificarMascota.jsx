@@ -4,6 +4,7 @@ import axiosCliente from "./api/Axios";
 import { useParams } from "react-router-dom"
 
 import Nav from "./Nav";
+import axios from "axios";
 
 const ModificarMascota = () => {
     const { id } = useParams()
@@ -20,9 +21,6 @@ const ModificarMascota = () => {
     const [razas, setRazas] = useState([]);
     const [categorias, setCategoria] = useState([]);
     const [generos, setGenero] = useState([]);
-
-
-
 
     // poder obtener las razas 
     // 
@@ -49,12 +47,14 @@ const ModificarMascota = () => {
         try {
             const response = await axiosCliente.get('/genero');
             setGenero(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error(error);
         }
     }
 
     useEffect(() => {
+
         const mascotaId = async () => {
             try {
                 const response = await axiosCliente.get(`/mascotas/${id}`);
@@ -64,6 +64,7 @@ const ModificarMascota = () => {
                 console.error(error);
             }
         }
+
         //ejecutamos las funciones para poder obtener los datos
         // y poder almacenarlos en las variables de estado
         mascotaId();
@@ -71,15 +72,28 @@ const ModificarMascota = () => {
         getCategoria();
         getGenero();
     }, [id]);
-
-
-    // funcion que permitira enviar los datos 
-    // que se quieren actualizar al servidor
     const actualizarMascota = async (id) => {
+
+        const token = localStorage.getItem('token')
+
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        const formMascota = new FormData()
+        formMascota.append('nombre', mascota.nombre)
+        formMascota.append('raza', mascota.raza)
+        formMascota.append('categoria', mascota.categoria)
+        formMascota.append('genero', mascota.genero)
+        formMascota.append('img', foto)
         try {
             console.log(mascota)
-            const response = await axiosCliente.put('/mascotas/' + id, mascota)
-            console.log(response)
+
+            const response = await axios.put(`http://localhost:3000/mascotas/${id}`, formMascota, config)
+
             if (response.status === 200) {
                 alert("mascota actulizada")
             }
@@ -87,6 +101,9 @@ const ModificarMascota = () => {
             console.error(error.response.data);
         }
     }
+
+    // funcion que permitira enviar los datos 
+    // que se quieren actualizar al servidor
 
 
     // cargar imagen a las variables para poder visualizarla de manera local

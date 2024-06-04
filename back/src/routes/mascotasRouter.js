@@ -28,6 +28,6 @@ mascotasRouter.get('/:id', isLogin, getMascotasId)
 
 mascotasRouter.delete('/:id', isLogin, eliminarMascota)
 
-mascotasRouter.put('/:id', isLogin, actualizarMascota)
+mascotasRouter.put('/:id', cargarImagen,actualizarMascota)
 
 export default mascotasRouter

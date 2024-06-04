@@ -96,7 +96,7 @@ const AddMascota = () => {
     if (foto) {
 
       try {
-        const response = await axiosCliente.post('/mascotas', data);
+        const response = await axiosCliente.post('/mascotas', data,);
 
         // si se registro con exito 
         // retorne a la pagina principal

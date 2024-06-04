@@ -47,9 +47,12 @@ const Login = () => {
                   className="border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name@company.com"
                   {
-                  ...register("correo", { required: true })
+                  ...register("correo", {
+                    required: true,
+                    value: true
+                  })
                   }
-                  value={correo}
+
                   onChange={e => setCorreo(e.target.value)}
                   autoComplete="off"
                 />

@@ -63,7 +63,7 @@ const Home = () => {
                   mascotas.map((mascota) => (
                     <li className="bg-gray-400  rounded-2xl" key={mascota._id}>
                       <div className="flex flex-row w-full items-center gap-x-3">
-                        <div className="flex h-20 w-1/5 items-center justify-center content-center">
+                        <div className="flex h-20 w-1/5  items-center justify-center content-center">
                           <img
                             src={`http://localhost:3000/imagenes/${mascota.foto}`}
                             className="h-14 w-16 rounded-full"
@@ -74,7 +74,7 @@ const Home = () => {
                           <span>{mascota.name}</span>
                           <span>{mascota.race_id.name}</span>
                         </div>
-                        <div className="flex justify-center content-center h-20 w-1/4 gap-x-2">
+                        <div className="flex   justify-center content-center h-20 w-1/4 gap-x-2">
                           {" "}
                           <figure className="flex justify-center items-center">
                             <Link to={`/detalle/${mascota._id}`}>
@@ -112,9 +112,14 @@ const Home = () => {
                   ))
                 }
 
-                <li className="flex content-center items-center bg-gray-400 lg:w-full rounded-s-md  h-20 max-md:w-5/6">
-                  {errorMensaje && <p>{errorMensaje}</p>}
-                </li>
+                {
+                  errorMensaje && (
+                    <li className="flex content-center items-center bg-gray-400 lg:w-full rounded-s-md  h-20 max-md:w-5/6">
+                      {errorMensaje && <p>{errorMensaje}</p>}
+                    </li>
+                  )
+                }
+
               </ul>
             </div>
           </main>
