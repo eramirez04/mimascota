@@ -1,6 +1,5 @@
 import usuarioModel from "../database/models/usuariosModel.js";
 
-
 // funcion que guarda la contaseña encriptada
 import { encriptarContra } from "../config/helpers/bycrypt.js";
 
@@ -12,8 +11,6 @@ export const RegistraUsuario = async (req, res) => {
         // criptacion de la contraseña
         const contraEncriptada = await encriptarContra(password)
 
-        console.log(contraEncriptada)
-
         const usuario = new usuarioModel({
             fullName,
             email,
@@ -23,8 +20,6 @@ export const RegistraUsuario = async (req, res) => {
         const save = await usuario.save()
 
         return res.status(201).json({mesanje : "usuario creado" })
-
-
     } catch (error) {
         return res.status(500).json({ mensaje: "error en el servidor", error })
     }

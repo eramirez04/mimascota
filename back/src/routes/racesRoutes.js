@@ -1,6 +1,5 @@
 import { Router } from "express";
 
-
 // controlador
 import { RegistraRaza, getRaza } from "../controllers/racesController.js";
 
@@ -8,10 +7,10 @@ import { RegistraRaza, getRaza } from "../controllers/racesController.js";
 // para poder acceder a los endpoints
 import { isLogin } from "../middleware/loginMiddleware.js";
 
-const RazaRouter = Router()
+const RazaRouter = Router();
 
-RazaRouter.post('', RegistraRaza)
+RazaRouter.post("", RegistraRaza);
 
-RazaRouter.get('', isLogin, getRaza)
+RazaRouter.get("", isLogin, getRaza);
 
-export default RazaRouter
+export default RazaRouter;

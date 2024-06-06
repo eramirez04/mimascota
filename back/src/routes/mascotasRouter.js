@@ -2,14 +2,14 @@ import { Router } from "express";
 
 // funciones de los controladores
 import {
-    registrarMascota,
-    getMascotas,
-    getMascotasId,
-    eliminarMascota,
-    actualizarMascota
+  registrarMascota,
+  getMascotas,
+  getMascotasId,
+  eliminarMascota,
+  actualizarMascota,
 } from "../controllers/mascotasController.js";
 
-// verificar token que llega por la cabecera 
+// verificar token que llega por la cabecera
 // para poder acceder a los endpoints
 import { isLogin } from "../middleware/loginMiddleware.js";
 
@@ -18,16 +18,16 @@ import { cargarImagen } from "../config/helpers/cargarArchivos.js";
 
 // iniciando rutas del servidor para registros
 // de las mascotas
-const mascotasRouter = Router()
+const mascotasRouter = Router();
 
-mascotasRouter.post('', isLogin, cargarImagen, registrarMascota)
+mascotasRouter.post("", isLogin, cargarImagen, registrarMascota);
 
-mascotasRouter.get('', isLogin, getMascotas)
+mascotasRouter.get("", isLogin, getMascotas);
 
-mascotasRouter.get('/:id', isLogin, getMascotasId)
+mascotasRouter.get("/:id", isLogin, getMascotasId);
 
-mascotasRouter.delete('/:id', isLogin, eliminarMascota)
+mascotasRouter.delete("/:id", isLogin, eliminarMascota);
 
-mascotasRouter.put('/:id', cargarImagen,actualizarMascota)
+mascotasRouter.put("/:id", cargarImagen, actualizarMascota);
 
-export default mascotasRouter
+export default mascotasRouter;
