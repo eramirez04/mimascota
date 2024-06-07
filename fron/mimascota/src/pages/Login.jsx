@@ -2,31 +2,38 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [correo, setCorreo] = useState('')
-  const [contrasenia, setContrasenia] = useState('')
+  const [correo, setCorreo] = useState("");
+  const [contrasenia, setContrasenia] = useState("");
 
-  const [errores, setErrores] = useState('')
+  const [errores, setErrores] = useState("");
 
   // direccionar a la pagina principal
-  const navegacion = useNavigate()
+  const navegacion = useNavigate();
 
-  const { register, formState: { errors }, handleSubmit, watch } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm();
 
   const login = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/login', {
-        email: correo, password: contrasenia
-      })
-      alert(response.data.Mensaje)
+      const response = await axios.post("http://localhost:3000/login", {
+        email: correo,
+        password: contrasenia,
+      });
+      alert(response.data.Mensaje);
       window.localStorage.setItem("token", response.data.token);
-      console.log(response.data.Mensaje)
-      navegacion('/home')
+      console.log(response.data.Mensaje);
+      navegacion("/home");
     } catch (error) {
-      setErrores(error.response.data.mensaje)
+      setErrores(error.response.data.mensaje);
     }
-  }
+  };
 
   return (
     <>
@@ -38,7 +45,9 @@ const Login = () => {
           <div className="absolute bottom-0  w-96 h-64 z-10">
             <form
               onSubmit={handleSubmit(login)}
-              action="" className="flex  flex-col gap-4 px-8 ">
+              action=""
+              className="flex  flex-col gap-4 px-8 "
+            >
               <div>
                 <input
                   type="email"
@@ -46,21 +55,16 @@ const Login = () => {
                   id="email"
                   className="border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name@company.com"
-                  {
-                  ...register("correo", {
+                  {...register("correo", {
                     required: true,
-                    value: true
-                  })
-                  }
-
-                  onChange={e => setCorreo(e.target.value)}
+                    value: correo,
+                  })}
+                  onChange={(e) => setCorreo(e.target.value)}
                   autoComplete="off"
                 />
-                {
-                  errors.correo?.type === "required" && (
-                    <div className="text-red-600">correo es requerido</div>
-                  )
-                }
+                {errors.correo?.type === "required" && (
+                  <div className="text-red-600">correo es requerido</div>
+                )}
               </div>
               <div>
                 <input
@@ -69,19 +73,14 @@ const Login = () => {
                   id="password"
                   placeholder="Contraseña"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-
-                  {
-                  ...register("password", { required: true })
-                  }
+                  {...register("password", { required: true })}
                   value={contrasenia}
-                  onChange={e => setContrasenia(e.target.value)}
+                  onChange={(e) => setContrasenia(e.target.value)}
                   autoComplete="off"
                 />
-                {
-                  errors.password?.type === 'required' && (
-                    <div className="text-red-600">Contraseña es requerida</div>
-                  )
-                }
+                {errors.password?.type === "required" && (
+                  <div className="text-red-600">Contraseña es requerida</div>
+                )}
               </div>
               <button
                 type="submit"
@@ -90,11 +89,16 @@ const Login = () => {
                 Ingresar
               </button>
             </form>
-            {
-              errores && (
-                <div className="px-8 text-red-500">{errores}</div>
-              )
-            }
+            <Link to={'/crearadmin'}>
+              <button
+                type="submit"
+                className="w-52 ml-20 mt-4 text-white bg-blue-950  hover:bg-blue-900  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              >
+                Crear Usuario
+              </button>
+            </Link>
+
+            {errores && <div className="px-8 text-red-500">{errores}</div>}
           </div>
         </div>
       </div>

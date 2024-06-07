@@ -15,6 +15,7 @@ const Login = async (req, res) => {
       return res.status(400).json({ mensaje: "correo es incorrecto" });
     let usuario = usuarioLogin[0];
 
+    // comparar contraseña de la base de datos, con la que el usuario introduce
     const checkContra = await compare(password, usuario.password);
 
     if (checkContra) {

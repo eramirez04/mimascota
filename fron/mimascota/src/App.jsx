@@ -9,6 +9,7 @@ const Home = lazy(() => import("./pages/Home"));
 import PageAddMascota from "./pages/PageAddMascota";
 import ProfileMascota from "./pages/ProfileMascota";
 import PageModificarMascota from "./pages/PageModificarMascota";
+import CrearAdmin from "./pages/CrearAdmin";
 
 // proteger rutas
 import { ProtectedRouteWithErrorBoundary } from "./routes/rutasProtegidas";
@@ -18,6 +19,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/crearadmin" element={<CrearAdmin />} />
         <Route element={<ProtectedRouteWithErrorBoundary />}>
           <Route path="/home" element={<Home />} />
           <Route path="/añadir" element={<PageAddMascota />} />

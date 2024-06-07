@@ -1,5 +1,5 @@
-import {check} from "express-validator"
+import { check } from "express-validator";
 
 export const validarImagen = [
-    check('img', 'La imagen es requerida').not().isEmpty()
-] 
+  check("img", "La imagen es requerida").not().isEmpty(),
+];
