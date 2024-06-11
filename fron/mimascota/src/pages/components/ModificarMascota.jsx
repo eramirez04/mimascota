@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axiosCliente from "./api/Axios";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 const ModificarMascota = ({ id }) => {
+  const navegacion = useNavigate();
   const [mascota, setMascota] = useState({});
   const [razas, setRazas] = useState([]);
   const [categorias, setCategoria] = useState([]);
@@ -17,7 +19,6 @@ const ModificarMascota = ({ id }) => {
       try {
         const response = await axiosCliente.get(`/mascotas/${id}`);
         setMascota(response.data.mascota);
-        console.log(response.data.mascota.foto);
       } catch (error) {
         console.error(error);
       }
@@ -72,7 +73,7 @@ const ModificarMascota = ({ id }) => {
     formMascota.append("raza", mascota.raza);
     formMascota.append("categoria", mascota.categoria);
     formMascota.append("genero", mascota.genero);
-    formMascota.append("img", foto);
+    formMascota.append("img", mascota.foto);
 
     try {
       const response = await axios.put(
@@ -83,6 +84,7 @@ const ModificarMascota = ({ id }) => {
 
       if (response.status === 200) {
         alert("mascota actulizada");
+        navegacion("/home");
       }
     } catch (error) {
       console.error(error.response.data);
@@ -93,7 +95,7 @@ const ModificarMascota = ({ id }) => {
     const archivo = event.target.files[0];
     if (archivo) {
       const previewUrl = URL.createObjectURL(archivo);
-      setFoto({ ...mascota, foto: archivo });
+      setMascota({ ...mascota, foto: archivo });
       setPreviewImagen(previewUrl);
     } else {
       setPreviewImagen(null);
@@ -103,14 +105,19 @@ const ModificarMascota = ({ id }) => {
     <>
       <div className="w-96 h-[700px] bg-blue-900 rounded-3xl flex flex-col gap-8">
         <main className="h-full px-4 py-2">
-          <div className="flex justify-center h-2/5">
-            <figure className="">
-              <img
-                src={`http://localhost:3000/imagenes/${mascota.foto}`}
-                alt="icon-camera"
-                className="rounded-full h-full"
-              />
-            </figure>
+          <div className="inset-0 flex items-center justify-center">
+            <div className="w-64 h-64 rounded-full overflow-hidden ">
+              <figure>
+                <img
+                  src={
+                    previewImagen ||
+                    `http://localhost:3000/imagenes/${mascota.foto}`
+                  }
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              </figure>
+            </div>
           </div>
           <div>
             <ul className="flex flex-col gap-4 items-center h-3/5 pt-11">
