@@ -85,12 +85,18 @@ export const eliminarMascota = async (req, res) => {
 //funcion qeu permite actualizar el registro de una mascota
 export const actualizarMascota = async (req, res) => {
   try {
-    console.log(req.body);
-    const { nombre, raza, categoria, genero } = req.body;
+    const { nombre, raza, categoria, genero, img } = req.body;
+    console.log(nombre, raza, categoria, genero, img);
+
     const id = req.params.id;
 
-    //poder obtener la imagen que llega del front
-    const img = req.file.originalname;
+    let imagen = "";
+    if (req.body.img) {
+      imagen = req.body.img;
+      console.log(imagen);
+    } else {
+      imagen = req.file.originalname;
+    }
 
     const response = await MascotaModel.findOneAndUpdate(
       { _id: id },
@@ -100,7 +106,7 @@ export const actualizarMascota = async (req, res) => {
           race_id: raza,
           categoria_id: categoria,
           genero_id: genero,
-          foto: img,
+          foto: imagen,
         },
       },
       { new: true }

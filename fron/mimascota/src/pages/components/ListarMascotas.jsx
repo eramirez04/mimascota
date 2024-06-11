@@ -33,6 +33,7 @@ const ListarMascotas = () => {
     try {
       const response = await axiosCliente.delete(`/mascotas/${id}`);
       alert(response.data.mensaje);
+      getMascotas();
     } catch (error) {
       console.error(error);
     }

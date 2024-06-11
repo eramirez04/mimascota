@@ -53,8 +53,8 @@ const Login = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  placeholder="name@company.com"
+                  className="border border-gray-300 text-gray-900 text-sm rounded-3xl  w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  placeholder="Correo Electronico"
                   {...register("correo", {
                     required: true,
                     value: correo,
@@ -72,7 +72,7 @@ const Login = () => {
                   name="password"
                   id="password"
                   placeholder="Contraseña"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   {...register("password", { required: true })}
                   value={contrasenia}
                   onChange={(e) => setContrasenia(e.target.value)}
@@ -84,15 +84,15 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="w-full  text-white bg-blue-950 hover:bg-blue-900  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full  text-white bg-blue-950 hover:bg-blue-900  focus:ring-4 focus:outline-none  font-medium rounded-3xl text-sm px-5 py-2.5 text-center"
               >
                 Ingresar
               </button>
             </form>
-            <Link to={'/crearadmin'}>
+            <Link to={"/crearadmin"}>
               <button
                 type="submit"
-                className="w-52 ml-20 mt-4 text-white bg-blue-950  hover:bg-blue-900  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-52 ml-20 mt-4 text-white bg-blue-950  hover:bg-blue-900  focus:ring-4 focus:outline-none  font-medium rounded-3xl text-sm px-5 py-2.5 text-center"
               >
                 Crear Usuario
               </button>

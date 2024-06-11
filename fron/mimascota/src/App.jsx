@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // pages
@@ -17,16 +17,18 @@ import { ProtectedRouteWithErrorBoundary } from "./routes/rutasProtegidas";
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/crearadmin" element={<CrearAdmin />} />
-        <Route element={<ProtectedRouteWithErrorBoundary />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/añadir" element={<PageAddMascota />} />
-          <Route path="/detalle/:id" element={<ProfileMascota />} />
-          <Route path="/editar/:id" element={<PageModificarMascota />} />
-        </Route>
-      </Routes>
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/crearadmin" element={<CrearAdmin />} />
+          <Route element={<ProtectedRouteWithErrorBoundary />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/añadir" element={<PageAddMascota />} />
+            <Route path="/detalle/:id" element={<ProfileMascota />} />
+            <Route path="/editar/:id" element={<PageModificarMascota />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   );
 }

@@ -4,13 +4,7 @@ import axiosCliente from "./api/Axios";
 import axios from "axios";
 
 const ModificarMascota = ({ id }) => {
-  const [mascota, setMascota] = useState({
-    nombre: "",
-    raza: "",
-    categoria: "",
-    genero: "",
-    foto: "",
-  });
+  const [mascota, setMascota] = useState({});
   const [razas, setRazas] = useState([]);
   const [categorias, setCategoria] = useState([]);
   const [generos, setGenero] = useState([]);
@@ -23,6 +17,7 @@ const ModificarMascota = ({ id }) => {
       try {
         const response = await axiosCliente.get(`/mascotas/${id}`);
         setMascota(response.data.mascota);
+        console.log(response.data.mascota.foto);
       } catch (error) {
         console.error(error);
       }
@@ -98,7 +93,7 @@ const ModificarMascota = ({ id }) => {
     const archivo = event.target.files[0];
     if (archivo) {
       const previewUrl = URL.createObjectURL(archivo);
-      setFoto(archivo);
+      setFoto({ ...mascota, foto: archivo });
       setPreviewImagen(previewUrl);
     } else {
       setPreviewImagen(null);
@@ -109,14 +104,12 @@ const ModificarMascota = ({ id }) => {
       <div className="w-96 h-[700px] bg-blue-900 rounded-3xl flex flex-col gap-8">
         <main className="h-full px-4 py-2">
           <div className="flex justify-center h-2/5">
-            <figure className="flex bg-white h-full w-full rounded-full items-center justify-center">
-              {previewImagen && (
-                <img
-                  src={previewImagen}
-                  alt="icon-camera"
-                  className="rounded-full h-full"
-                />
-              )}
+            <figure className="">
+              <img
+                src={`http://localhost:3000/imagenes/${mascota.foto}`}
+                alt="icon-camera"
+                className="rounded-full h-full"
+              />
             </figure>
           </div>
           <div>

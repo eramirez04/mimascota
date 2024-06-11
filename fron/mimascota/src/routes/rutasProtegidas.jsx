@@ -18,10 +18,21 @@ export const ProtectedRoute = ({ children }) => {
   return <Outlet />;
 };
 
-// cerrar cesion
-export const Logout = () => {
-  localStorage.removeItem("token");
-  return <Navigate to="/" />;
+// cerrar sesion
+export const Logout = ({ button }) => {
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  if (!token) {
+    return null;
+  }
+
+  return <button onClick={handleLogout}>{button}</button>;
 };
 
 import ErrorBoundary from "../helpers/ErrorRutas";
